@@ -1,0 +1,28 @@
+<div class="card-image" (click)="showPockemonDetails(pokDetails)">
+  <img
+    [src]="pokDetails?.sprites?.other['official-artwork']?.front_default"
+    alt="pokemon-image"
+  />
+</div>
+<div class="card-content">
+  <div class="card-title">
+    <h3>{{ pokDetails?.name | uppercase }}</h3>
+  </div>
+  <div class="pokemon-size">
+    <span class="text-label"> Height :</span>
+    <span class="text-value"> {{ pokDetails?.height }}</span>
+    <span class="text-seperator"> | </span>
+    <span class="text-label"> Weight :</span>
+    <span class="text-value">{{ pokDetails?.weight }}</span>
+  </div>
+  <hr />
+
+  <div class="pokemon-abilities">
+    <h5>Abilities</h5>
+    <ul class="tags">
+      <li *ngFor="let ability of pokDetails?.abilities">
+        <span class="tag">{{ ability?.ability?.name }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

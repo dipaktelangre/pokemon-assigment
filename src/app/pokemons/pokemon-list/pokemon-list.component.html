@@ -1,0 +1,33 @@
+<nav class="nav">
+  <div class="search">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+      <input
+        type="text"
+        placeholder="Type name and enter"
+        formControlName="search"
+      />
+    </form>
+    <form id="pageForm" [formGroup]="pageForm" (ngSubmit)="onPageSubmit()">
+      <label for="pageSize">Page Size</label>
+      <input type="number" formControlName="pageSize" />
+    </form>
+  </div>
+  <!-- <div class="sorting">Sorting</div> -->
+  <div class="pagination">
+    <a
+      [class.disabled]="!pokemons?.previous"
+      (click)="loadPokemons(pokemons.previous)"
+      >Prev</a
+    >
+    <a [class.disabled]="!pokemons?.next" (click)="loadPokemons(pokemons.next)"
+      >Next</a
+    >
+  </div>
+</nav>
+<div class="card-container" role="main">
+  <div class="cards">
+    <ng-container *ngFor="let pok of pokemons.results | filterlist: searchTerm">
+      <pokemon-card [pokemon]="pok"></pokemon-card>
+    </ng-container>
+  </div>
+</div>
